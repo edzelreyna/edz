@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="IMAGES/edzel.jpg">
+        <title>Your Life In Numbers</title>
+
+        <style>
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-family: sans-serif;
+                background: linear-gradient(135deg, #6a11cb, #2575fc);
+                color: #fff;
+            }
+
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+            .birthdate {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+                opacity: 0.8;
+            }
+            .name {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+                opacity: 0.8;
+            }
+
+            .stats {
+                display: flex;
+                grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
+                gap: 20px;
+                width:100%;
+                text-align: center;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .stat-box {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+                transition: transform 0.2s ease-in-out;
+                display: inline-block;
+                text-align: center;
+                white-space: nowrap;
+                
+            }
+
+            .stat-box:hover {
+                transform: scale(1.05);
+            }
+
+            .label {
+                font-size: 1rem;
+                margin-bottom: 1-px;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+
+            .number {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+
+            .fade-in {
+                animation: fadeIn 1.5s ease-in-out;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .warning {
+                margin-top: 30px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                 color: #ff0000;
+                 text-align: center;
+                 animation: pulse 1.1s infinite;
+                 text-shadow: 
+                 -1px -1px 0 #000,
+                  1px -1px 0 #000,
+                  -1px 1px 0 #000,
+                  1px 1px 0 #000;
+            }
+
+            @keyframes pulse {
+                1%, 100% {
+                    opacity: 1;
+                } 
+                50% {
+                    opacity: 0.3;
+                }
+            }
+
+            .hr {
+                border: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                margin: 0;
+            }
+            .footer {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                color: #fff;
+                padding: 10px 20px;
+                font-size: 1 rem;
+                text-align: center;
+                font-size: 0.7rem;
+                margin-bottom: 0;
+                opacity: 0.8;
+                font-family: sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container fade-in">
+            <h1>Your Life In Numbers</h1>
+
+            <div class="birthdate">
+                Born: September 23, 2003
+            </div>
+            <div class="name">
+                Name: Edzel Reyna
+            </div>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="label">Years</div><hr>
+                    <div class="number" id="years">0</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="label">Months</div><hr>
+                    <div class="number" id="months">0</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="label">Days</div><hr>
+                    <div class="number" id="days">0</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="label">Hours</div><hr>
+                    <div class="number" id="hours">0</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="label">Minutes</div><hr>
+                    <div class="number" id="minutes">0</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="label">Seconds</div><hr>
+                    <div class="number" id="seconds">0</div>
+                </div>
+            </div>
+            <div class="warning"> <br><br>
+                Caution! If The Numbers Start Counting Down, Your Life Is In Danger.
+            </div>
+        </div>
+
+        <footer class="footer fade-in">
+            <p>All rights reserved 2025.</p>
+            <p>Developer: Edzel Reyna</p>
+        </footer>
+
+
+        <script>
+            //set your birthdate here
+            const birthDate = new Date(2003, 9, 23) //Year, Month, Day
+
+            function update() {
+                const now = new Date();
+                const diff = now - birthDate;
+
+                const years = Math.floor(diff / (365.25 * 24 * 60 * 60 * 1000));
+                const months = Math.floor(diff / (30.44 * 24 * 60 * 60 * 1000));
+                const days = Math.floor(diff / (24 * 60 * 60 * 1000));
+                const hours = Math.floor(diff / (60 * 60 * 1000));
+                const minutes = Math.floor(diff / (60 * 1000));
+                const seconds = Math.floor(diff / (1000));
+
+                document.getElementById('years').textContent = years.toLocaleString();
+                document.getElementById('months').textContent = months.toLocaleString();
+                document.getElementById('days').textContent = days.toLocaleString();
+                document.getElementById('hours').textContent = hours.toLocaleString();
+                document.getElementById('minutes').textContent = minutes.toLocaleString();
+                document.getElementById('seconds').textContent = seconds.toLocaleString();
+            }
+
+            //upadate immediately and then every second
+            update();
+            setInterval(update, 1000);
+        </script>
+    </body>
+</html>
